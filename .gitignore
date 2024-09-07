@@ -1,0 +1,14 @@
+ShoppingPlatform.API/appsettings.Development.json
+
+# API
+ShoppingPlatform.API/bin
+ShoppingPlatform.API/obj
+
+# BLL
+ShoppingPlatform.BLL/bin
+ShoppingPlatform.BLL/obj
+
+# DAL
+ShoppingPlatform.DAL/bin
+ShoppingPlatform.DAL/obj
+ShoppingPlatform.DAL/Migrations
