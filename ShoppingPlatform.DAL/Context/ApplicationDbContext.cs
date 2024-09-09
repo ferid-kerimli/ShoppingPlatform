@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ShoppingPlatform.DAL.Entity;
+using ShoppingPlatform.DAL.Extensions;
 
 namespace ShoppingPlatform.DAL.Context;
 
@@ -15,6 +15,8 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        
+        builder.Seed();
 
         builder.Entity<Basket>()
             .Property(b => b.TotalPrice)
@@ -31,39 +33,6 @@ public class ApplicationDbContext : IdentityDbContext<AppUser, AppRole, int>
         builder.Entity<CheckOut>()
             .Property(c => c.TotalAmount)
             .HasColumnType("decimal(18, 2)");
-
-        builder.Entity<AppRole>().HasData(
-            new AppRole
-            {
-                Id = 1,
-                Name = "Admin",
-                NormalizedName = "ADMIN",
-                ConcurrencyStamp = Guid.NewGuid().ToString()
-            }
-        );
-        
-        var adminUserId = 1;
-        builder.Entity<AppUser>().HasData(
-            new AppUser
-            {
-                Id = adminUserId,
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
-                Email = "admin@example.com",
-                NormalizedEmail = "ADMIN@EXAMPLE.COM",
-                PasswordHash = new PasswordHasher<AppUser>().HashPassword(null, "admin123!"),
-                SecurityStamp = Guid.NewGuid().ToString()
-            }
-        );
-        
-        builder.Entity<IdentityUserRole<int>>().HasData(
-            new IdentityUserRole<int>
-            {
-                UserId = adminUserId,
-                RoleId = 1 
-            }
-        );
-        
         
         // Product
         builder.Entity<Product>()

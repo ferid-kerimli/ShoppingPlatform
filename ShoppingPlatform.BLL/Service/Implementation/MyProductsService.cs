@@ -58,7 +58,7 @@ public class MyProductsService : IMyProductsService
             // get user products
             var products = await _unitOfWork.ProductRepository.GetProductsByUserId(user.Id);
 
-            if (products == null)
+            if (products.Count == 0)
             {
                 response.Failure("You don't have any products", 404);
                 Log.Logger.Warning(nameof(GetMyAllProducts) + "User don't have any products: {user}", user);
@@ -263,12 +263,12 @@ public class MyProductsService : IMyProductsService
             {
                 var productImage = new ProductImage();
             
-                var fileName = Guid.NewGuid() + file.Name;
+                var fileName = Guid.NewGuid() + file.FileName;
                 const string folderName = nameof(FolderNames.ProductImages);
                 var folderPath = Path.Combine(_webHostEnvironment.WebRootPath, folderName);
                 var filePath = Path.Combine(folderPath, fileName);
                 
-                if (productCreateDto is not { Files: null }) continue;
+                if (productCreateDto is { Files: null }) continue;
             
                 await using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
