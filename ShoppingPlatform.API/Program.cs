@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using ShoppingPlatform.BLL;
 using ShoppingPlatform.BLL.Extensions;
 using ShoppingPlatform.BLL.Filter;
+using ShoppingPlatform.BLL.Utility;
 using ShoppingPlatform.DAL;
 using ShoppingPlatform.DAL.Context;
 using ShoppingPlatform.DAL.Entity;
@@ -95,6 +96,11 @@ builder.Services.ConfigureApplicationCookie((configure) =>
 });
 
 var app = builder.Build();
+
+app.UseStaticFiles();
+
+var env = app.Services.GetRequiredService<IWebHostEnvironment>();
+DirectoryCreator.EnsureProductImagesFolderExists(env);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
