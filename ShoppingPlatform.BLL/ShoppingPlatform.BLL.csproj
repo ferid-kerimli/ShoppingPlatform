@@ -21,8 +21,4 @@
       <ProjectReference Include="..\ShoppingPlatform.DAL\ShoppingPlatform.DAL.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Dto\CheckOutDto\" />
-    </ItemGroup>
-
 </Project>

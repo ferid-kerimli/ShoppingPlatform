@@ -39,5 +39,6 @@ public static class BusinessLogicDependencyInjection
         services.AddScoped<IRatingService, RatingService>();
         services.AddScoped<IReviewService, ReviewService>();
         services.AddScoped<IVerificationService, VerificationService>();
+        services.AddScoped<ICheckOutService, CheckOutService>();
     }
 }
