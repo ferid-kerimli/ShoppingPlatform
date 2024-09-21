@@ -46,6 +46,7 @@ public class CheckOutService : ICheckOutService
             {
                 response.Failure("User not found", 404);
                 Log.Logger.Warning(nameof(ProcessPayment) + "User not found");
+                return response;
             }
 
             var basket = await _unitOfWork.BasketRepository.GetUserBasket(user.Id);
