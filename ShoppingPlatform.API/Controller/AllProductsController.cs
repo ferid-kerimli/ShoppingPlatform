@@ -10,10 +10,12 @@ namespace ShoppingPlatform.API.Controller;
 public class AllProductsController : ControllerBase
 {
     private readonly IAllProductsService _allProductsService;
+    private readonly IRatingService _ratingService;
 
-    public AllProductsController(IAllProductsService allProductsService)
+    public AllProductsController(IAllProductsService allProductsService, IRatingService ratingService)
     {
         _allProductsService = allProductsService;
+        _ratingService = ratingService;
     }
 
     [HttpGet("GetAllProducts")]
@@ -48,6 +50,20 @@ public class AllProductsController : ControllerBase
     public async Task<IActionResult> GetProductReviews(int productId)
     {
         var result = await _allProductsService.GetProductReviews(productId);
+        return StatusCode(result.StatusCode, result);
+    }
+
+    [HttpGet("GetProductsRatingInDescedingOrder")]
+    public async Task<IActionResult> GetProductsRatingInDescendingOrder()
+    {
+        var result = await _ratingService.GetProductsWithDescendingRating();
+        return StatusCode(result.StatusCode, result);
+    }
+
+    [HttpGet("GetTop10Products")]
+    public async Task<IActionResult> GetTop10Products()
+    {
+        var result = await _ratingService.GetTop10Products(10);
         return StatusCode(result.StatusCode, result);
     }
 }

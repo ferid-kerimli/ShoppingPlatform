@@ -1,6 +1,7 @@
 # API
 ShoppingPlatform.API/bin
 ShoppingPlatform.API/obj
+ShoppingPlatform.API/wwwroot
 
 # BLL
 ShoppingPlatform.BLL/bin

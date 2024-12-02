@@ -10,4 +10,6 @@ public interface IProductRepository : IRepository<Product>
     Task<List<Product>> GetProductsByUserId(int userId);
     Task<Product> GetProductByUserId(int userId, int productId);
     Task<List<Product>> GetProductsByUserCategoryId(int userId, int categoryId);
+    Task<List<Product>> GetProductsWithDescendingRatingOrder();
+    Task<List<Product>> GetTopRatedProducts(int topCount);
 }

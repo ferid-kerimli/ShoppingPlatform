@@ -57,4 +57,21 @@ public class ProductRepository : Repository<Product>, IProductRepository
             .Where(p => p.UserId == userId && p.CategoryId == categoryId)
             .ToListAsync();
     }
+
+    public async Task<List<Product>> GetProductsWithDescendingRatingOrder()
+    {
+        return await _context.Products
+            .Where(p => p.AverageRating != null)
+            .OrderByDescending(p => p.AverageRating)
+            .ToListAsync();
+    }
+
+    public async Task<List<Product>> GetTopRatedProducts(int topCount)
+    {
+        return await _context.Products
+            .Where(p => p.AverageRating != null) 
+            .OrderByDescending(p => p.AverageRating) 
+            .Take(topCount) 
+            .ToListAsync();
+    }
 }
