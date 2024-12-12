@@ -4,7 +4,7 @@ using ShoppingPlatform.BLL.Service.Abstraction;
 
 namespace ShoppingPlatform.API.Controller;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 public class AuthenticationController : ControllerBase
 {

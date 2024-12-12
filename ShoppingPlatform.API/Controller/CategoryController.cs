@@ -5,7 +5,7 @@ using ShoppingPlatform.BLL.Service.Abstraction;
 
 namespace ShoppingPlatform.API.Controller;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 [Authorize]
 public class CategoryController : ControllerBase
@@ -17,7 +17,7 @@ public class CategoryController : ControllerBase
         _categoryService = categoryService;
     }
 
-    [HttpGet("GetAllCategories")]
+    [HttpGet("GetCategories")]
     public async Task<IActionResult> GetAllCategories()
     {
         var result = await _categoryService.GetAllCategories();

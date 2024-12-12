@@ -4,7 +4,7 @@ using ShoppingPlatform.BLL.Service.Abstraction;
 
 namespace ShoppingPlatform.API.Controller;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 [Authorize(Roles = "Admin")]
 public class AdminController : ControllerBase
@@ -20,14 +20,14 @@ public class AdminController : ControllerBase
         _userRoleService = userRoleService;
     }
 
-    [HttpGet("GetAllUsers")]
+    [HttpGet("GetUsers")]
     public async Task<IActionResult> GetAllUsers()
     {
         var result = await _userService.GetAllUsers();
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet("GetUserById")]
+    [HttpGet("user/{id}")]
     public async Task<IActionResult> GetUserById(int id)
     {
         var result = await _userService.GetUserById(id);
@@ -41,14 +41,14 @@ public class AdminController : ControllerBase
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet("GetAllRoles")]
+    [HttpGet("GetRoles")]
     public async Task<IActionResult> GetAllRoles()
     {
         var result = await _roleService.GetAllRoles();
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet("GetRoleById")]
+    [HttpGet("role/{id}")]
     public async Task<IActionResult> GetRoleById(int id)
     {
         var result = await _roleService.GetRoleById(id);

@@ -4,7 +4,7 @@ using ShoppingPlatform.BLL.Service.Abstraction;
 
 namespace ShoppingPlatform.API.Controller;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 [Authorize]
 public class AllProductsController : ControllerBase
@@ -18,21 +18,21 @@ public class AllProductsController : ControllerBase
         _ratingService = ratingService;
     }
 
-    [HttpGet("GetAllProducts")]
+    [HttpGet("GetProducts")]
     public async Task<IActionResult> GetAllProducts()
     {
         var result = await _allProductsService.GetAllProducts();
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet("GetProductById")]
+    [HttpGet("product/{id}")]
     public async Task<IActionResult> GetProductById(int id)
     {
         var result = await _allProductsService.GetProductById(id);
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpGet("GetProductsByCategoryId")]
+    [HttpGet("product/category/{categoryId}")]
     public async Task<IActionResult> GetProductsByCategoryId(int categoryId)
     {
         var result = await _allProductsService.GetProductsByCategoryId(categoryId);

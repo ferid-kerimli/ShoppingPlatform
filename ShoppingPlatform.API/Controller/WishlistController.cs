@@ -5,7 +5,7 @@ using ShoppingPlatform.BLL.Service.Abstraction;
 
 namespace ShoppingPlatform.API.Controller;
 
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 [Authorize]
 public class WishlistController : ControllerBase
@@ -17,21 +17,21 @@ public class WishlistController : ControllerBase
         _wishListService = wishListService;
     }
 
-    [HttpGet("GetUserWishlist")]
+    [HttpGet("MyWishlist")]
     public async Task<IActionResult> GetUserWishlist()
     {
         var result = await _wishListService.GetUserWishlist();
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpPost("AddProductToWishlist")]
+    [HttpPost("AddProductToMyWishlist")]
     public async Task<IActionResult> AddProductToWishlist(AddProductToWishListDto addProductToWishListDto)
     {
         var result = await _wishListService.AddProductToWishList(addProductToWishListDto);
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpDelete("RemoveProductFromWishlist")]
+    [HttpDelete("RemoveProductFromMyWishlist")]
     public async Task<IActionResult> RemoveProductFromWishlist(int productId)
     {
         var result = await _wishListService.RemoveProductFromWishlist(productId);
