@@ -31,21 +31,21 @@ public class CategoryController : ControllerBase
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpPost]
+    [HttpPost("CreateCategory")]
     public async Task<IActionResult> CreateCategory(CategoryCreateDto categoryCreateDto)
     {
         var result = await _categoryService.CreateCategory(categoryCreateDto);
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpPut]
+    [HttpPut("UpdateCategory")]
     public async Task<IActionResult> UpdateCategory(CategoryUpdateDto categoryUpdateDto)
     {
         var result = await _categoryService.UpdateCategory(categoryUpdateDto);
         return StatusCode(result.StatusCode, result);
     }
 
-    [HttpDelete]
+    [HttpDelete("DeleteCategory")]
     public async Task<IActionResult> DeleteCategory(int id)
     {
         var result = await _categoryService.DeleteCategory(id);
